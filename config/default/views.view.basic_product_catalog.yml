@@ -5,7 +5,6 @@ dependencies:
   config:
     - core.entity_view_mode.commerce_product.teaser
     - system.menu.main
-    - taxonomy.vocabulary.product_brands
     - taxonomy.vocabulary.product_collections
   module:
     - better_exposed_filters
@@ -194,53 +193,6 @@ display:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-        product_brand_target_id:
-          id: product_brand_target_id
-          table: commerce_product__product_brand
-          field: product_brand_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: taxonomy_index_tid
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: product_brand_target_id_op
-            label: Brand
-            description: ''
-            use_operator: false
-            operator: product_brand_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: prand
-            required: false
-            remember: false
-            multiple: true
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          vid: product_brands
-          type: select
-          hierarchy: false
-          limit: true
-          error_message: true
         product_collections_target_id:
           id: product_collections_target_id
           table: commerce_product__product_collections
@@ -307,7 +259,18 @@ display:
           distinct: false
           replica: false
           query_tags: {  }
-      relationships: {  }
+      relationships:
+        variations_target_id:
+          id: variations_target_id
+          table: commerce_product__variations
+          field: variations_target_id
+          relationship: none
+          group_type: group
+          admin_label: 'Product variation'
+          entity_type: commerce_product
+          entity_field: variations
+          plugin_id: standard
+          required: false
       use_ajax: true
       header: {  }
       footer: {  }
@@ -319,7 +282,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
       tags: {  }
   product_catalog:
     id: product_catalog
@@ -341,5 +303,4 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
       tags: {  }
